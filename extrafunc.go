@@ -18,30 +18,20 @@ package urlqstr
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 //
-// Check if the tag value contains invalid chars which could not be directly used as url
-// https://tools.ietf.org/html/rfc3986 RFC3986
 
-const upperCaseStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-const lowerCaseStr = "abcdefghijklmnopqrstuvwxyz"
-const digitsStr = "1234567890"
-const specialSymbolsStr = "-._~%"
-const allowedChars = upperCaseStr + lowerCaseStr + digitsStr + specialSymbolsStr
+func (uqstr *UQueryString) Sort(){
 
-func isValidTag(tagval string) bool{
-	for _, char := range tagval {
-		// if char in allowedchars, go ahead; else, return false
-		if !isValidRuneInStr(char, allowedChars) {
-			return false
-		}
-	}
-	return true
 }
 
-func isValidRuneInStr(val rune, data string) bool{
-	for _, item := range data {
-		if item == val {
-			return false
-		}
-	}
-	return true
+func (uqstr *UQueryString) InsertKey(key string, value string){
+
 }
+
+func (uqstr *UQueryString) AppendKey(key string, value string){
+
+}
+
+func (uqstr *UQueryString) DeleteKey(key string){
+
+}
+
