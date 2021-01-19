@@ -35,7 +35,6 @@ func (uqstr *UQueryString) extractDataFromStruct(DataIntf interface{}){
 		defer close(sig1)
 		for i := 0; i < ifaceTyps.NumField(); i++ {
 			curfd := ifaceTyps.Field(i)
-			uqstr.f2Tbn.mu.Lock()
 			dataA, exists := curfd.Tag.Lookup(TAGKEY)
 			if exists {
 				var afterProcDataA = dataA
@@ -44,7 +43,9 @@ func (uqstr *UQueryString) extractDataFromStruct(DataIntf interface{}){
 				if !isValidTag(dataA) {
 					afterProcDataA = url.QueryEscape(dataA)
 				}
+				uqstr.f2Tbn.mu.Lock()
 				uqstr.f2Tbn.val[curfd.Name] = afterProcDataA
+				uqstr.f2Tbn.mu.Unlock()
 			}
 		}
 	}()
